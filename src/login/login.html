@@ -1,0 +1,13 @@
+<main>
+    <form class="login-form">
+        <p>Username:</p>
+        <input type="text" ng-model="userName" validate-input>
+        <div class="clearfix"></div><br>
+        <p>Password:</p>
+        <input type="password" ng-model="userPassword" validate-input>
+        <div class="clearfix"></div>
+        <br>
+        <p ng-if="invalidCredentials" class="bold-red">Invalid username or password, try again.</p>
+        <button type="button" class="btn-default" ng-click="validateCredentials()">SUBMIT</button>
+    </form>
+</main>

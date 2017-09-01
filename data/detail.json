@@ -1,0 +1,14 @@
+{
+    "user1": {
+        "Role": 1,
+        "name": "AAAAA"
+    },
+    "user2": {
+        "Role": 2,
+        "name": "BBBB"
+    },
+    "user3": {
+        "Role": 3,
+        "name": "CCCC"
+    }
+}
