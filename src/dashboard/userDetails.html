@@ -1,0 +1,13 @@
+<h3 ng-transclude></h3>
+<div ng-if="user1Active">
+    <input type="text" ng-model="$parent.user1Details">
+    <button ng-click="storeDetails()" class="btn-default">STORE DETAILS</button>
+</div>
+
+<div ng-if="user2Active">
+    <p ng-bind="retrieveDetails"></p>
+</div>
+
+<div ng-if="user3Active">
+    
+</div>

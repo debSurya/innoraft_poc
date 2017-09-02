@@ -1,5 +1,5 @@
 app.controller('credentialController', ['$scope', 'credentialGetterService', '$location', 'userSessionStorageService', function ($scope, credentialGetterService, $location, userSessionStorageService) {
-    var validCredentials, correctCredentials = false;
+    var validCredentials, correctCredentials = false, userIndex='';
     credentialGetterService.getCredentials().then(function (credentials) {
         validCredentials = credentials.data;
     });
@@ -10,6 +10,7 @@ app.controller('credentialController', ['$scope', 'credentialGetterService', '$l
                 if (validCredentials['' + key + ''].name === $scope.userName && validCredentials['' + key + ''].password === $scope.userPassword) {
                     console.log('valid credentials');
                     correctCredentials = true;
+                    userIndex = key;
                     break;
                 }
             }
@@ -19,7 +20,7 @@ app.controller('credentialController', ['$scope', 'credentialGetterService', '$l
             $scope.userName = $scope.userPassword = "";
         } else {
             $scope.invalidCredentials = false;
-            userSessionStorageService.storeCurrentUser($scope.userName);
+            userSessionStorageService.storeCurrentUser($scope.userName, key);
             $location.url('/dashboard');
         }
     };

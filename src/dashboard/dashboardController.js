@@ -1,3 +1,3 @@
-app.controller('dashboardController', ['$scope', function ($scope) {
-   
+app.controller('dashboardController', ['$scope', '$window', function ($scope, $window) {
+    
 }]);
