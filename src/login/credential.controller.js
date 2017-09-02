@@ -1,9 +1,13 @@
-app.controller('credentialController', ['$scope', 'credentialGetterService', '$location', 'localStorageGetterSetter', '$rootScope', function ($scope, credentialGetterService, $location, localStorageGetterSetter, $rootScope) {
+app.controller('credentialController', ['$scope', 'credentialGetterService', '$location', 'localStorageGetterSetter', '$rootScope', '$log', function ($scope, credentialGetterService, $location, localStorageGetterSetter, $rootScope, $log) {
     $rootScope.loggedIn = false;
-    var validCredentials, correctCredentials = false, userIndex='';
+    var validCredentials, correctCredentials = false,
+        userIndex = '';
     credentialGetterService.getCredentials().then(function (credentials) {
-        validCredentials = credentials.data;
-    });
+            validCredentials = credentials.data;
+        },
+        function (err) {
+            $log.error(err);
+        });
 
     $scope.validateCredentials = function () {
         for (var key in validCredentials) {
