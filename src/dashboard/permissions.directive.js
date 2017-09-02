@@ -1,4 +1,4 @@
-app.directive('permissions', ['$window', '$rootScope', function ($window, $rootScope) {
+app.directive('permissions', ['$rootScope', 'localStorageGetterSetter', function ($rootScope, localStorageGetterSetter) {
     return {
         restrict: 'A',
         transclude: true,
@@ -9,6 +9,7 @@ app.directive('permissions', ['$window', '$rootScope', function ($window, $rootS
         controller: function ($scope) {
             var currentRoles;
             $scope.isStored = $scope.isDeleted = false;
+            $scope.retrievedDetails = localStorageGetterSetter.getItem('user1Details') || [];
             $scope.$watch('permissions', function () {
                 currentRoles = $scope.permissions.split(',');
                 currentRoles.map(function (item) {
@@ -17,18 +18,16 @@ app.directive('permissions', ['$window', '$rootScope', function ($window, $rootS
             });
 
             $scope.storeDetails = function () {
-                $window.localStorage.setItem('user1Details', $scope.user1Details);
+                $scope.retrievedDetails.push($scope.user1Details);
+                localStorageGetterSetter.setItem('user1Details', $scope.retrievedDetails);
                 $scope.user1Details = "";
                 $scope.isStored = true;
             };
 
-            $scope.deleteDetails = function () {
-                $window.localStorage.removeItem('user1Details');
-                $scope.retrievedDetails = "";
-                $scope.isDeleted = true;
+            $scope.deleteDetails = function (index) {
+                $scope.retrievedDetails.splice(index, 1);
+                localStorageGetterSetter.setItem('user1Details', $scope.retrievedDetails);
             };
-
-            $scope.retrievedDetails = $window.localStorage.getItem('user1Details');
         }
     };
 }]);

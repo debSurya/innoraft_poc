@@ -1,7 +1,10 @@
-<main>
+<main ng-if="!missingUserDetails">
     <a href="#/login" class="sign-out">Sign out</a>
     <h2 class="welcome-text">Welcome: {{currentUserName}}</h2>
     <div class="details-container" permissions={{currentUserPermissions}}>
         <strong>User details as per the permissions:</strong>
     </div>
+</main>
+<main ng-if="missingUserDetails">
+    <p class="user-details-error-text">ERROR! NO STORED USER DETAILS IN DATABASE!</p>
 </main>

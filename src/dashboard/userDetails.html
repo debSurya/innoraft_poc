@@ -7,11 +7,11 @@
 
 <div class="user2-details-container" ng-if="user2Active">
     <strong>User 1 stored details:</strong>
-    <span class="stored-text" ng-bind="retrievedDetails"></span>
-</div>
-
-<div ng-if="user3Active">
-    <br>
-    <button ng-click="deleteDetails()" class="delete-button btn-default" ng-disabled="$parent.isDeleted">DELETE DETAILS</button>
-    <p class="is-deleted" ng-show="$parent.isDeleted">Details deleted..</p>
+    <ul>
+        <li ng-repeat="entry in retrievedDetails track by $index">
+            <span ng-class="{'is-deleted' : (isDeleted[$index] && user3Active)}">{{entry}}</span>
+            <button ng-if="user3Active" ng-click="deleteDetails($index)" class="delete-button btn-default">DELETE DETAILS</button>
+        </li>
+    </ul>
+    <p class="storage-empty-text" ng-if="retrievedDetails.length === 0">No stored data exists !</p>
 </div>

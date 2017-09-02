@@ -73,10 +73,38 @@
 
 .user2-details-container {
     font-size: 18px;
+
+    li {
+        list-style-type: none;
+        padding-top: 3px;
+        display: flow-root;
+
+        span {
+            float: left;
+        }
+
+        button.delete-button {
+            float: right;
+        }
+    }
 }
 
 .store-button[disabled], .delete-button[disabled] {
     color: grey;
+}
+
+.user-details-error-text {
+    text-align: center;
+    font-size: 2em;
+    color: #900404;
+    text-shadow: 1px 1px 4px white;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+.storage-empty-text {
+    color: red;
+    text-shadow: 1px 1px 3px white;
 }
 
 body {
