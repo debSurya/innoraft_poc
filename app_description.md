@@ -11,3 +11,6 @@ Key features used: <br>
   *transclusion of common data across all users<br>
   *using conditional dom loading based on the permissions set and bind via text binding '@' and ng-if<br>
   *specific data deletion based on index of the selected data
+  
+Setup:
+  After clone/download, run 'npm i'. When dependencies are installed, run 'npm start' for the server.
