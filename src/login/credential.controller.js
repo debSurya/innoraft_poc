@@ -1,4 +1,5 @@
-app.controller('credentialController', ['$scope', 'credentialGetterService', '$location', 'userSessionStorageService', function ($scope, credentialGetterService, $location, userSessionStorageService) {
+app.controller('credentialController', ['$scope', 'credentialGetterService', '$location', 'userSessionStorageService', '$rootScope', function ($scope, credentialGetterService, $location, userSessionStorageService, $rootScope) {
+    $rootScope.loggedIn = false;
     var validCredentials, correctCredentials = false, userIndex='';
     credentialGetterService.getCredentials().then(function (credentials) {
         validCredentials = credentials.data;
@@ -20,7 +21,8 @@ app.controller('credentialController', ['$scope', 'credentialGetterService', '$l
             $scope.userName = $scope.userPassword = "";
         } else {
             $scope.invalidCredentials = false;
-            userSessionStorageService.storeCurrentUser($scope.userName, key);
+            userSessionStorageService.storeCurrentUser(key);
+            $rootScope.loggedIn = true;
             $location.url('/dashboard');
         }
     };

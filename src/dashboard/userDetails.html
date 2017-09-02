@@ -1,13 +1,17 @@
 <h3 ng-transclude></h3>
 <div ng-if="user1Active">
-    <input type="text" ng-model="$parent.user1Details">
-    <button ng-click="storeDetails()" class="btn-default">STORE DETAILS</button>
+    <input type="text" ng-model="$parent.user1Details" ng-change="$parent.isStored = false">
+    <button class="store-button btn-default" ng-click="storeDetails()" ng-disabled="($parent.user1Details === '' || $parent.user1Details === undefined)">STORE DETAILS</button>
+    <p class="is-stored" ng-show="$parent.isStored">Details stored..</p>
 </div>
 
-<div ng-if="user2Active">
-    <p ng-bind="retrieveDetails"></p>
+<div class="user2-details-container" ng-if="user2Active">
+    <strong>User 1 stored details:</strong>
+    <span class="stored-text" ng-bind="retrievedDetails"></span>
 </div>
 
 <div ng-if="user3Active">
-    
+    <br>
+    <button ng-click="deleteDetails()" class="delete-button btn-default" ng-disabled="$parent.isDeleted">DELETE DETAILS</button>
+    <p class="is-deleted" ng-show="$parent.isDeleted">Details deleted..</p>
 </div>

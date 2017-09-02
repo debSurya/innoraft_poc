@@ -1,4 +1,4 @@
-app.directive('permissions', ['$window', function ($window) {
+app.directive('permissions', ['$window', '$rootScope', function ($window, $rootScope) {
     return {
         restrict: 'A',
         transclude: true,
@@ -6,18 +6,29 @@ app.directive('permissions', ['$window', function ($window) {
             permissions: '@'
         },
         templateUrl: './src/dashboard/userDetails.html',
-        link: function (scope, elem, attr) {
-            var currentRoles = attr.permissions.split(',');
-            currentRoles.map(function (item) {
-                scope['user' + item + 'Active'] = true;
-            });
-        },
         controller: function ($scope) {
+            var currentRoles;
+            $scope.isStored = $scope.isDeleted = false;
+            $scope.$watch('permissions', function () {
+                currentRoles = $scope.permissions.split(',');
+                currentRoles.map(function (item) {
+                    $scope['user' + item + 'Active'] = true;
+                });
+            });
+
             $scope.storeDetails = function () {
                 $window.localStorage.setItem('user1Details', $scope.user1Details);
+                $scope.user1Details = "";
+                $scope.isStored = true;
             };
 
-            $scope.retrieveDetails = $window.localStorage.getItem('user1Details');
+            $scope.deleteDetails = function () {
+                $window.localStorage.removeItem('user1Details');
+                $scope.retrievedDetails = "";
+                $scope.isDeleted = true;
+            };
+
+            $scope.retrievedDetails = $window.localStorage.getItem('user1Details');
         }
     };
 }]);

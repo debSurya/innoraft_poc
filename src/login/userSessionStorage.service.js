@@ -1,6 +1,5 @@
 app.service('userSessionStorageService', ['$window', function ($window) {
-    this.storeCurrentUser = function (currentUser, userIndex) {
-        $window.localStorage.setItem('currentUser', currentUser);
+    this.storeCurrentUser = function (userIndex) {
         $window.localStorage.setItem('userIndex', userIndex);
     };
 }]);

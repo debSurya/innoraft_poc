@@ -1,5 +1,7 @@
 <main>
-    <div permissions="1">
+    <a href="#/login" class="sign-out">Sign out</a>
+    <h2 class="welcome-text">Welcome: {{currentUserName}}</h2>
+    <div class="details-container" permissions={{currentUserPermissions}}>
         <strong>User details as per the permissions:</strong>
     </div>
 </main>

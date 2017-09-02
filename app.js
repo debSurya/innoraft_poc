@@ -15,7 +15,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     });
 }]);
 
-app.run(['$location', '$window', function ($location, $window) {
-    $window.localStorage.clear();
+app.run(['$location', '$window', '$rootScope', function ($location, $window, $rootScope) {
     $location.url('/');
+    $rootScope.loggedIn = false;
 }]);
